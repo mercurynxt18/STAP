@@ -83,11 +83,11 @@ StartPermanentNoclip()
 local function adaptiveCrawlTo(targetPos, humanoidRootPart, character)
     local finalTarget = targetPos + Vector3.new(0, 3, 0)
  
-    local FAST_SPEED = 40 -- เพิ่มความเร็วเมื่อทะลุกำแพง (เดิม 35)
+    local FAST_SPEED = 35 -- เพิ่มความเร็วเมื่อทะลุกำแพง (เดิม 35)
     local SLOW_SPEED = 20 -- (เดิม 20)
-    local STEP_DISTANCE = 0.3 -- เพิ่มระยะทางต่อการเทเลพอร์ต (เดิม 0.25)
+    local STEP_DISTANCE = 0.25 -- เพิ่มระยะทางต่อการเทเลพอร์ต (เดิม 0.25)
  
-    local CLEARANCE_COOLDOWN = 0.25 -- ลดระยะเวลาการรอก่อนทะลุ (เดิม 0.5)
+    local CLEARANCE_COOLDOWN = 0.4 -- ลดระยะเวลาการรอก่อนทะลุ (เดิม 0.5)
     local lastWallDetectedTime = 0
  
     local lockedYHeight = humanoidRootPart.Position.Y
