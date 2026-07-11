@@ -1,4 +1,3 @@
-wait(10)
 -- SERVICES --
 local Workspace = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
