@@ -1,4 +1,3 @@
-wait(10)
 -- Wait for the game to fully load
 if not game:IsLoaded() then
     game.Loaded:Wait()
