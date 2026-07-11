@@ -1,4 +1,3 @@
-wait(10)
 task.wait(1)
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local UserInputService = game:GetService("UserInputService")
