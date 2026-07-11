@@ -1,4 +1,3 @@
-wait(10)
 local Workspace = game:GetService("Workspace")
 local PathfindingService = game:GetService("PathfindingService")
 local TweenService = game:GetService("TweenService")
