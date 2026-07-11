@@ -1,31 +1,10 @@
 -- =========================================================================
--- 💎 ULTIMATE SCI-FI FULLSCREEN HUB (WITH TOGGLE BUTTON)
+-- 💎 ULTIMATE SCI-FI FULLSCREEN HUB (WITH TOGGLE BUTTON) - NO BACKGROUND IMAGE
 -- =========================================================================
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
-
--- Đường dẫn link ảnh RAW từ GitHub của bạn
-local GitHub_Image_URL = ""
-local Local_File_Name = ""
-local Asset_ID = ""
-
--- [XỬ LÝ TẢI ẢNH NGOÀI ROBLOX]
-local success, err = pcall(function()
-    if writefile and readfile and getcustomasset then
-        if not isfile(Local_File_Name) then
-            writefile(Local_File_Name, game:HttpGet(GitHub_Image_URL))
-        end
-        Asset_ID = getcustomasset(Local_File_Name)
-    else
-        Asset_ID = "" 
-    end
-end)
-
-if not success or Asset_ID == "" then
-    Asset_ID = ""
-end
 
 -- 1. TẠO KHUNG CHÍNH (SCREEN GUI)
 local ScreenGui = Instance.new("ScreenGui")
@@ -42,17 +21,11 @@ HubContent.BorderSizePixel = 0
 HubContent.Visible = true -- Trạng thái mặc định là hiển thị
 HubContent.Parent = ScreenGui
 
--- 2. HÌNH NỀN FULLSCREEN
-local AnimeBackground = Instance.new("ImageLabel")
-AnimeBackground.Size = UDim2.new(1, 0, 1, 0)
-AnimeBackground.Image = Asset_ID
-AnimeBackground.ScaleType = Enum.ScaleType.Crop
-AnimeBackground.Parent = HubContent
-
+-- 2. แถบสีพื้นหลังแบบโปร่งแสง (แทนที่รูปภาพเดิม)
 local DarkOverlay = Instance.new("Frame")
 DarkOverlay.Size = UDim2.new(1, 0, 1, 0)
 DarkOverlay.BackgroundColor3 = Color3.fromRGB(10, 14, 18)
-DarkOverlay.BackgroundTransparency = 0.4
+DarkOverlay.BackgroundTransparency = 0.4 -- ปรับค่าตรงนี้ได้ (0 คือดำสนิท, 1 คือโปร่งใสทะลุเห็นเกม)
 DarkOverlay.BorderSizePixel = 0
 DarkOverlay.Parent = HubContent
 
@@ -168,12 +141,10 @@ local function updateGemDisplay(text)
 end
 
 task.spawn(function()
-    -- Hệ thống đợi tìm UI chứa chỉ số Gem của game (Tối đa 15 giây)
     local mainUI = PlayerGui:WaitForChild("MainUI", 15)
     local gemDisplay = mainUI and mainUI:WaitForChild("GemDisplay", 15)
     local gemCountObject = gemDisplay and gemDisplay:WaitForChild("Count", 15)
 
-    -- Vòng lặp quét dự phòng nếu game tải UI chậm
     while not gemCountObject do
         pcall(function()
             gemCountObject = PlayerGui.MainUI.GemDisplay.Count
@@ -182,19 +153,15 @@ task.spawn(function()
         task.wait(0.5)
     end
 
-    -- Nếu tìm thấy đúng đối tượng chứa dữ liệu Gem
     if gemCountObject then
-        -- Cập nhật dữ liệu hiện tại ngay lập tức
         updateGemDisplay(gemCountObject.Text)
         StatusText.Text = "STATUS: ACTIVE // LIVE_DATA_CONNECTED"
         
-        -- Lắng nghe sự thay đổi: Mỗi khi game thay đổi số Gem, Hub tự cập nhật theo (Chỉ đọc)
         gemCountObject:GetPropertyChangedSignal("Text"):Connect(function()
             updateGemDisplay(gemCountObject.Text)
         end)
         print("[🚀 SYSTEM] Đã kết nối thành công dữ liệu Gem thực tế!");
     else
-        -- Trường hợp không tìm thấy UI (Ví dụ: Sai game hoặc UI đã thay đổi cấu trúc)
         GemValueLabel.Text = "💎 NOT FOUND";
         GemValueLabel.TextColor3 = Color3.fromRGB(255, 70, 70)
         StatusText.Text = "STATUS: ERROR // CANNOT_LINK_GEM_DATA"
