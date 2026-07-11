@@ -7,8 +7,8 @@ local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 -- Đường dẫn link ảnh RAW từ GitHub của bạn
-local GitHub_Image_URL = "https://raw.githubusercontent.com/tinvn1/scripttest/main/anhnen.jpg"
-local Local_File_Name = "tinvn_hub_background.jpg"
+local GitHub_Image_URL = ""
+local Local_File_Name = ""
 local Asset_ID = ""
 
 -- [XỬ LÝ TẢI ẢNH NGOÀI ROBLOX]
