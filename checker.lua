@@ -19,12 +19,12 @@ local success, err = pcall(function()
         end
         Asset_ID = getcustomasset(Local_File_Name)
     else
-        Asset_ID = "rbxassetid://16441589139" 
+        Asset_ID = "" 
     end
 end)
 
 if not success or Asset_ID == "" then
-    Asset_ID = "rbxassetid://16441589139"
+    Asset_ID = ""
 end
 
 -- 1. TẠO KHUNG CHÍNH (SCREEN GUI)
