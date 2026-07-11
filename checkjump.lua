@@ -1,4 +1,3 @@
-wait(10)
 local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
 local jumpCount = 0
